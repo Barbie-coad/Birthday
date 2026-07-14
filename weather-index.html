@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="weather-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Background Animation -->
+        <div class="background-animation"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <h1>🌤️ Weather Dashboard</h1>
+            <p class="subtitle">Get real-time weather information</p>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search city or enter coordinates..."
+                    class="search-input"
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-btn">
+                    <span>🔍</span> Search
+                </button>
+                <button id="currentLocationBtn" class="location-btn" title="Use current location">
+                    📍
+                </button>
+            </div>
+            <div class="search-suggestions" id="suggestions"></div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error hidden"></div>
+
+        <!-- Main Weather Display -->
+        <main class="main-content">
+            <!-- Current Weather Card -->
+            <section id="currentWeather" class="current-weather hidden">
+                <div class="current-header">
+                    <div class="location-info">
+                        <h2 id="locationName"></h2>
+                        <p id="currentDate" class="current-date"></p>
+                    </div>
+                    <div class="weather-main">
+                        <div class="temperature">
+                            <span id="temp" class="temp-value"></span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <div class="weather-description">
+                            <p id="description"></p>
+                            <p id="feelsLike" class="feels-like"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-icon-large">
+                    <img id="weatherIcon" src="" alt="Weather icon">
+                </div>
+
+                <!-- Current Details Grid -->
+                <div class="current-details">
+                    <div class="detail-card">
+                        <div class="detail-icon">💨</div>
+                        <div class="detail-info">
+                            <span class="detail-label">Wind Speed</span>
+                            <span id="windSpeed" class="detail-value"></span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">💧</div>
+                        <div class="detail-info">
+                            <span class="detail-label">Humidity</span>
+                            <span id="humidity" class="detail-value"></span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">🔽</div>
+                        <div class="detail-info">
+                            <span class="detail-label">Pressure</span>
+                            <span id="pressure" class="detail-value"></span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">👁️</div>
+                        <div class="detail-info">
+                            <span class="detail-label">Visibility</span>
+                            <span id="visibility" class="detail-value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="additional-info">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <span class="info-icon">🌅</span>
+                            <span class="info-label">Sunrise</span>
+                            <span id="sunrise" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🌇</span>
+                            <span class="info-label">Sunset</span>
+                            <span id="sunset" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🌡️</span>
+                            <span class="info-label">Max/Min</span>
+                            <span id="maxMin" class="info-value"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forecast Section -->
+            <section id="forecastSection" class="forecast-section hidden">
+                <h3 class="forecast-title">📅 5-Day Forecast</h3>
+                <div class="forecast-container" id="forecastContainer"></div>
+            </section>
+
+            <!-- Hourly Forecast -->
+            <section id="hourlySection" class="hourly-section hidden">
+                <h3 class="hourly-title">⏰ Hourly Forecast (Next 24 Hours)</h3>
+                <div class="hourly-container" id="hourlyContainer"></div>
+            </section>
+
+            <!-- Search History -->
+            <section class="search-history-section">
+                <h3>🕐 Recent Searches</h3>
+                <div class="search-history" id="searchHistory"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by OpenWeatherMap API | Data refreshes every 10 minutes</p>
+            <p class="api-info">Last updated: <span id="lastUpdated">Never</span></p>
+        </footer>
+    </div>
+
+    <script src="weather-script.js"></script>
+</body>
+</html>
